@@ -76,11 +76,10 @@ Widget teamItemByilder(Team team) {
     elevation: 10.0,
     child: ListTile(
       title: Text("${team.name}"),
-      leading: SvgPicture.network(
-        '${team.photoUrl}',
+      leading: Container(
         width: 40,
         height: 40,
-        allowDrawingOutsideViewBox: false,
+        child: getSvgPicture(team.photoUrl)
       ),
       trailing: Padding(
         padding: const EdgeInsets.only(right: 16),
@@ -99,4 +98,17 @@ Widget playerItemByilder(Player player) {
   return ListTile(
     leading: Text("${player.name}"),
   );
+}
+
+
+getSvgPicture(String url){
+  try{
+    return SvgPicture.network(url,width: 39,height: 39,);
+
+  }catch(e){
+    return Container(
+      width: 39,
+      height: 39,
+    );
+  }
 }

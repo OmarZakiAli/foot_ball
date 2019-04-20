@@ -30,29 +30,7 @@ class MyHome extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          drawer:  Drawer(
-            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-              DrawerHeader(
-                  child: Text("choose league",
-                      style: TextStyle(color: Colors.blue, fontSize: 15))),
-              ListTile(
-                title: Text("primiere league"),
-                onTap: () {
-                  standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
-                  scorerBloc.dispatch(FetchScorerEvent(leagueId: "PL"));
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text("spanish league"),
-                onTap: () {
-                  standingBloc.dispatch(FetchStandingEvent(leagueId: "PD"));
-                  scorerBloc.dispatch(FetchScorerEvent(leagueId: "PD"));
-                  Navigator.pop(context);
-                },
-              )
-            ]),
-          ),
+           drawer: getDrawer(context),
           appBar: AppBar(
             centerTitle: true,
             title: Text(
@@ -79,4 +57,30 @@ class MyHome extends StatelessWidget {
       ),
     );
   }
+  getDrawer(BuildContext context){
+    return  Drawer(
+      child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+        DrawerHeader(
+            child: Text("choose league",
+                style: TextStyle(color: Colors.blue, fontSize: 15))),
+        ListTile(
+          title: Text("primiere league"),
+          onTap: () {
+            standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
+            scorerBloc.dispatch(FetchScorerEvent(leagueId: "PL"));
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: Text("spanish league"),
+          onTap: () {
+            standingBloc.dispatch(FetchStandingEvent(leagueId: "PD"));
+            scorerBloc.dispatch(FetchScorerEvent(leagueId: "PD"));
+            Navigator.pop(context);
+          },
+        )
+      ]),
+    );
+  }
+
 }
