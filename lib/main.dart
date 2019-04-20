@@ -1,6 +1,6 @@
-import './ui/home.dart';
+import './ui/app.dart';
 import 'package:flutter/material.dart';
  void main() async {
-runApp(Home());
+runApp(App());
 
 }
