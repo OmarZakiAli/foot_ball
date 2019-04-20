@@ -17,31 +17,9 @@ class MyTabBarView extends StatefulWidget {
 }
 
 class MyTabBarViewState extends State<MyTabBarView> {
-  final StandingBloc standingBloc = StandingBloc();
-  final ScorerBloc scorerBloc=ScorerBloc();
-  @override
-  void initState() {
-    standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
-    scorerBloc.dispatch(FetchScorerEvent(leagueId: "PD"));
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocProviderTree(
-      blocProviders: [
-        BlocProvider<StandingBloc>(bloc: standingBloc),
-        BlocProvider<ScorerBloc>(bloc: scorerBloc),
-
-      ],
-      child: TabsBuilder(),
-    );
-  }
-  @override
-  void dispose() {
-  scorerBloc.dispose(); 
-standingBloc.dispose();
-    super.dispose();
+    return TabsBuilder();
   }
 }
 
@@ -49,8 +27,7 @@ class TabsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final StandingBloc _sbloc = BlocProvider.of<StandingBloc>(context);
-        final ScorerBloc _s2bloc = BlocProvider.of<ScorerBloc>(context);
-
+    final ScorerBloc _s2bloc = BlocProvider.of<ScorerBloc>(context);
 
     return TabBarView(
       children: <Widget>[
@@ -58,7 +35,6 @@ class TabsBuilder extends StatelessWidget {
           bloc: _sbloc,
           builder: (BuildContext con, StandingState st) {
             if (_sbloc.currentState is UnloadedSYet) {
-              _sbloc.dispatch(FetchStandingEvent(leagueId: "PD"));
               return Center(child: CircularProgressIndicator());
             } else if (_sbloc.currentState is ErrorState) {
               return Text("error loading");
@@ -72,13 +48,11 @@ class TabsBuilder extends StatelessWidget {
             }
           },
         ),
-
-            BlocBuilder(
+        BlocBuilder(
           bloc: _s2bloc,
           builder: (BuildContext con, ScorerState st) {
             if (_s2bloc.currentState is UnloadedPYet) {
-              _s2bloc.dispatch(FetchScorerEvent(leagueId: "PD"));
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             } else if (_s2bloc.currentState is ErrorpState) {
               return Text("error loading");
             } else if (_s2bloc.currentState is ScorersLoaded) {
@@ -87,23 +61,20 @@ class TabsBuilder extends StatelessWidget {
                   itemBuilder: (BuildContext context, int position) {
                     Player player = ScorersLoaded.scorers.scorers[position];
                     return playerItemByilder(player);
-                                      });
-                                }
-                              },
-                            ) 
-                    
-                          ],
-                        );
-                      }
-                    }
-                    
-            
+                  });
+            }
+          },
+        )
+      ],
+    );
+  }
+}
 
 Widget teamItemByilder(Team team) {
   return Card(
     color: Colors.orange.shade400,
     elevation: 10.0,
-      child: ListTile(
+    child: ListTile(
       title: Text("${team.name}"),
       leading: SvgPicture.network(
         '${team.photoUrl}',
@@ -124,10 +95,8 @@ Widget teamItemByilder(Team team) {
   );
 }
 
-
-
- Widget playerItemByilder(Player player) {
-   return ListTile(
+Widget playerItemByilder(Player player) {
+  return ListTile(
     leading: Text("${player.name}"),
-   );
+  );
 }

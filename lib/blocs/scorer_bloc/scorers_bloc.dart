@@ -22,7 +22,16 @@ class ScorerBloc extends Bloc<ScorerEvent, ScorerState> {
              ScorersLoaded.scorers=scr;
              yield ScorersLoaded();
 
-           } 
+           } else  if(currentState is ScorersLoaded){
+
+             final Scorers scr = Scorers.fromList(await getScorers(league: event.leagueId));
+             ScorersLoaded.scorers=scr;
+             yield ScorersLoaded();}
+           else  if(currentState is ErrorpState){
+
+             final Scorers scr = Scorers.fromList(await getScorers(league: event.leagueId));
+             ScorersLoaded.scorers=scr;
+             yield ScorersLoaded();}
 
        }catch(_){
 

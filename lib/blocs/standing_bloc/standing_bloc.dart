@@ -22,7 +22,17 @@ class StandingBloc extends Bloc<StandingEvent, StandingState> {
              StandingLoaded.standing=std;
              yield StandingLoaded();
 
-           } 
+           } else if(currentState is StandingLoaded){
+
+             final Standing std = Standing.fromList(await getStanding(league: event.leagueId));
+             StandingLoaded.standing=std;
+             yield StandingLoaded();
+
+           } else  if(currentState is ErrorState){
+
+             final Standing std = Standing.fromList(await getStanding(league: event.leagueId));
+             StandingLoaded.standing=std;
+             yield StandingLoaded();}
 
        }catch(_){
 
