@@ -60,27 +60,25 @@ class MyHome extends StatelessWidget {
   getDrawer(BuildContext context){
     return  Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-        DrawerHeader(
-            child: Text("choose league",
-                style: TextStyle(color: Colors.blue, fontSize: 15))),
-        ListTile(
-          title: Text("primiere league"),
-          onTap: () {
-            standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
-            scorerBloc.dispatch(FetchScorerEvent(leagueId: "PL"));
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
-          title: Text("spanish league"),
-          onTap: () {
-            standingBloc.dispatch(FetchStandingEvent(leagueId: "PD"));
-            scorerBloc.dispatch(FetchScorerEvent(leagueId: "PD"));
-            Navigator.pop(context);
-          },
-        )
+       
+        listTileBuilder(context,"English League","PL"),
+        listTileBuilder(context,"spanish League","PD"),
+        listTileBuilder(context,"itallian League","SA"),
+        listTileBuilder(context,"france League","FL1"),
+        listTileBuilder(context,"Bundes League","BL1"),
       ]),
     );
+  }
+
+  ListTile listTileBuilder(BuildContext context,String league,String leagueId) {
+    return ListTile(
+        title: Text(league),
+        onTap: () {
+          standingBloc.dispatch(FetchStandingEvent(leagueId: leagueId));
+          scorerBloc.dispatch(FetchScorerEvent(leagueId: leagueId));
+          Navigator.pop(context);
+        },
+      );
   }
 
 }

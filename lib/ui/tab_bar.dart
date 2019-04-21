@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import './widgets/player_widget.dart';
+import './widgets/team_widget.dart';
 import '../back_end/models/player_model.dart';
 import 'package:football_app/back_end/models/team_model.dart';
 import 'package:football_app/blocs/scorer_bloc/scorers_bloc.dart';
@@ -70,45 +72,4 @@ class TabsBuilder extends StatelessWidget {
   }
 }
 
-Widget teamItemByilder(Team team) {
-  return Card(
-    color: Colors.orange.shade400,
-    elevation: 10.0,
-    child: ListTile(
-      title: Text("${team.name}"),
-      leading: Container(
-        width: 40,
-        height: 40,
-        child: getSvgPicture(team.photoUrl)
-      ),
-      trailing: Padding(
-        padding: const EdgeInsets.only(right: 16),
-        child: CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Text(
-              "${team.points}",
-              style: TextStyle(color: Colors.white),
-            )),
-      ),
-    ),
-  );
-}
 
-Widget playerItemByilder(Player player) {
-  return ListTile(
-    leading: Text("${player.name}"),
-  );
-}
-
-
-getSvgPicture(String url){
-  try{
-    return SvgPicture.network(url,width: 39,height: 39,);
-
-  }catch(e){
-    return Container(
-      width: 39,
-      height: 39,
-    );
-  }
-}
