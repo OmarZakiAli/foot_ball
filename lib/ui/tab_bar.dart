@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:football_app/back_end/models/matches_model.dart';
+import 'package:football_app/blocs/match_bloc/states.dart';
+import 'package:football_app/ui/widgets/match_builder.dart';
 import './widgets/player_widget.dart';
 import './widgets/team_widget.dart';
 import '../back_end/models/player_model.dart';
@@ -11,8 +14,8 @@ import 'package:football_app/blocs/standing_bloc/states.dart';
 import 'package:football_app/blocs/standing_bloc/standing_bloc.dart';
 import 'package:football_app/blocs/scorer_bloc/events.dart';
 import 'package:football_app/blocs/scorer_bloc/states.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:football_app/blocs/match_bloc/matches_bloc.dart';
+import 'package:football_app/blocs/match_bloc/events.dart';
 class MyTabBarView extends StatefulWidget {
   @override
   MyTabBarViewState createState() => MyTabBarViewState();
@@ -30,7 +33,7 @@ class TabsBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final StandingBloc _sbloc = BlocProvider.of<StandingBloc>(context);
     final ScorerBloc _s2bloc = BlocProvider.of<ScorerBloc>(context);
-
+    final MatchBloc _mbloc = BlocProvider.of<MatchBloc>(context);
     return TabBarView(
       children: <Widget>[
         BlocBuilder(
@@ -66,10 +69,24 @@ class TabsBuilder extends StatelessWidget {
                   });
             }
           },
+        ), BlocBuilder(
+          bloc: _mbloc,
+          builder: (BuildContext con, MatchState st) {
+            if (_mbloc.currentState is UnloadedMYet) {
+              return Center(child: CircularProgressIndicator());
+            } else if (_mbloc.currentState is ErrormState) {
+              return Text("error loading");
+            } else if (_mbloc.currentState is MatchesLoaded) {
+              return ListView.builder(
+                  itemCount: MatchesLoaded.matches.matches.length,
+                  itemBuilder: (BuildContext context, int position) {
+                    Matchx mat = MatchesLoaded.matches.matches[position];
+                    return matchItemByilder(mat);
+                  });
+            }
+          },
         )
       ],
     );
   }
 }
-
-

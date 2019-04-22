@@ -10,13 +10,16 @@ import 'package:football_app/blocs/standing_bloc/states.dart';
 import 'package:football_app/blocs/standing_bloc/standing_bloc.dart';
 import 'package:football_app/blocs/scorer_bloc/events.dart';
 import 'package:football_app/blocs/scorer_bloc/states.dart';
+import 'package:football_app/blocs/match_bloc/matches_bloc.dart';
+import 'package:football_app/blocs/match_bloc/events.dart';
 
 class MyHome extends StatelessWidget {
   final StandingBloc standingBloc;
   final ScorerBloc scorerBloc;
+  final MatchBloc matchBloc;
   final Key key;
 
-  const MyHome({this.standingBloc,this.scorerBloc,this.key}):super(key:key);
+  const MyHome({this.standingBloc,this.scorerBloc,this.matchBloc, this.key}):super(key:key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,10 @@ class MyHome extends StatelessWidget {
       blocProviders: [
         BlocProvider<StandingBloc>(bloc: standingBloc),
         BlocProvider<ScorerBloc>(bloc: scorerBloc),
+          BlocProvider<MatchBloc>(bloc: matchBloc),
       ],
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
            drawer: getDrawer(context),
           appBar: AppBar(
@@ -48,6 +52,9 @@ class MyHome extends StatelessWidget {
                 ),
                 Tab(
                   text: "scorers",
+                ),
+                Tab(
+                  text: "matches",
                 )
               ],
             ),
@@ -76,6 +83,7 @@ class MyHome extends StatelessWidget {
         onTap: () {
           standingBloc.dispatch(FetchStandingEvent(leagueId: leagueId));
           scorerBloc.dispatch(FetchScorerEvent(leagueId: leagueId));
+          matchBloc.dispatch(FetchMatchEvent(leagueId: leagueId));
           Navigator.pop(context);
         },
       );

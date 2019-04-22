@@ -28,11 +28,12 @@ Widget teamItemByilder(Team team) {
 
 
 getSvgPicture(String url){
+  var widget;
   try{
-    return SvgPicture.network(url,width: 39,height: 39,);
+    widget= SvgPicture.network(url,width: 39,height: 39,);
 
   }catch(e){
-    return Container(
+    widget= Container(
       width: 39,
       height: 39,
       child: Center(
@@ -42,4 +43,5 @@ getSvgPicture(String url){
       ),
     );
   }
+  return widget;
 }
