@@ -26,9 +26,9 @@ class _AppState extends State<App> {
 
   @override
   void initState() {
-    standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
-    scorerBloc.dispatch(FetchScorerEvent(leagueId: "PL"));
-    matchBloc.dispatch(FetchMatchEvent(leagueId: "PL"));
+  //  standingBloc.dispatch(FetchStandingEvent(leagueId: "PL"));
+    //scorerBloc.dispatch(FetchScorerEvent(leagueId: "PL"));
+    //matchBloc.dispatch(FetchMatchEvent(leagueId: "PL"));
     super.initState();
   }
 

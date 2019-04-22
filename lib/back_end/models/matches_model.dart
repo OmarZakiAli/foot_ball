@@ -11,6 +11,9 @@ class Matches{
    matchx.time=getFormattedTime(item["utcDate"]);
    matchx.home=item["homeTeam"]["name"];
    matchx.away=item["awayTeam"]["name"];
+   matchx.homeId=item["homeTeam"]["id"];
+   matchx.awayId=item["awayTeam"]["id"];
+
    matches.add(matchx);
     }
   }
@@ -27,4 +30,6 @@ class Matchx{
   String time;
   String home;
   String away;
+  int homeId;
+  int awayId;
 }

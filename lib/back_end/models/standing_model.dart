@@ -1,9 +1,11 @@
+import 'package:intl/date_symbol_data_http_request.dart';
+
 import './team_model.dart';
 
 
 class Standing{
 
-List<Team> table=[];
+  List<Team> table=[];
 
 Standing.fromList(List badTable){
 
@@ -28,6 +30,7 @@ table.clear();
 
 }
 
+
 @override
   String toString() {
     
@@ -40,4 +43,9 @@ table.clear();
     return toReturn;
   }
 
+
+
 }
+
+
+

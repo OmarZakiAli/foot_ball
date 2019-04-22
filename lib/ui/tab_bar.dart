@@ -40,6 +40,7 @@ class TabsBuilder extends StatelessWidget {
           bloc: _sbloc,
           builder: (BuildContext con, StandingState st) {
             if (_sbloc.currentState is UnloadedSYet) {
+              _sbloc.dispatch(FetchStandingEvent());
               return Center(child: CircularProgressIndicator());
             } else if (_sbloc.currentState is ErrorState) {
               return Text("error loading");
