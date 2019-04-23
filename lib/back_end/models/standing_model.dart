@@ -1,4 +1,3 @@
-import 'package:intl/date_symbol_data_http_request.dart';
 
 import './team_model.dart';
 

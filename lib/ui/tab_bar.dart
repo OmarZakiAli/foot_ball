@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/back_end/models/matches_model.dart';
@@ -49,7 +48,7 @@ class TabsBuilder extends StatelessWidget {
                   itemCount: StandingLoaded.standing.table.length,
                   itemBuilder: (BuildContext context, int position) {
                     Team team = StandingLoaded.standing.table[position];
-                    return teamItemByilder(team);
+                    return teamItemBuilder(team);
                   });
             }
           },
@@ -58,6 +57,7 @@ class TabsBuilder extends StatelessWidget {
           bloc: _s2bloc,
           builder: (BuildContext con, ScorerState st) {
             if (_s2bloc.currentState is UnloadedPYet) {
+              _s2bloc.dispatch(FetchScorerEvent());
               return Center(child: CircularProgressIndicator());
             } else if (_s2bloc.currentState is ErrorpState) {
               return Text("error loading");
@@ -66,7 +66,7 @@ class TabsBuilder extends StatelessWidget {
                   itemCount: ScorersLoaded.scorers.scorers.length,
                   itemBuilder: (BuildContext context, int position) {
                     Player player = ScorersLoaded.scorers.scorers[position];
-                    return playerItemByilder(player);
+                    return playerItemBuilder(player);
                   });
             }
           },
@@ -74,6 +74,7 @@ class TabsBuilder extends StatelessWidget {
           bloc: _mbloc,
           builder: (BuildContext con, MatchState st) {
             if (_mbloc.currentState is UnloadedMYet) {
+              _mbloc.dispatch(FetchMatchEvent());
               return Center(child: CircularProgressIndicator());
             } else if (_mbloc.currentState is ErrormState) {
               return Text("error loading");
@@ -82,7 +83,7 @@ class TabsBuilder extends StatelessWidget {
                   itemCount: MatchesLoaded.matches.matches.length,
                   itemBuilder: (BuildContext context, int position) {
                     Matchx mat = MatchesLoaded.matches.matches[position];
-                    return matchItemByilder(mat);
+                    return matchItemBuilder(mat);
                   });
             }
           },

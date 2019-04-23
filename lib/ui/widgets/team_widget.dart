@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football_app/back_end/models/team_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-Widget teamItemByilder(Team team) {
+Widget teamItemBuilder(Team team) {
   return Card(
     color: Colors.orange.shade400,
     elevation: 10.0,

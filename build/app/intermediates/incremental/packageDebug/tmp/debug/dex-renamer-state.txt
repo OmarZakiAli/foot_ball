@@ -1,0 +1,4 @@
+#Tue Apr 23 13:12:24 EET 2019
+base.0=C\:\\Users\\omar\\Desktop\\football_app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
