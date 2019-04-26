@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Apr 23 13:12:25 EET 2019
+#Tue Apr 23 14:39:59 EET 2019
 4.path=flutter_assets/FontManifest.json
 8.set=ASSET
 6.path=lib/armeabi-v7a/libflutter.so

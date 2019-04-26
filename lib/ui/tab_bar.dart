@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/back_end/models/matches_model.dart';
+import 'package:football_app/back_end/models/team_model.dart';
+import 'package:football_app/blocs/match_bloc/events.dart';
+import 'package:football_app/blocs/match_bloc/matches_bloc.dart';
 import 'package:football_app/blocs/match_bloc/states.dart';
+import 'package:football_app/blocs/scorer_bloc/events.dart';
+import 'package:football_app/blocs/scorer_bloc/scorers_bloc.dart';
+import 'package:football_app/blocs/scorer_bloc/states.dart';
+import 'package:football_app/blocs/standing_bloc/events.dart';
+import 'package:football_app/blocs/standing_bloc/standing_bloc.dart';
+import 'package:football_app/blocs/standing_bloc/states.dart';
 import 'package:football_app/ui/widgets/match_builder.dart';
+
 import './widgets/player_widget.dart';
 import './widgets/team_widget.dart';
 import '../back_end/models/player_model.dart';
-import 'package:football_app/back_end/models/team_model.dart';
-import 'package:football_app/blocs/scorer_bloc/scorers_bloc.dart';
-import 'package:football_app/blocs/standing_bloc/events.dart';
-import 'package:football_app/blocs/standing_bloc/states.dart';
-import 'package:football_app/blocs/standing_bloc/standing_bloc.dart';
-import 'package:football_app/blocs/scorer_bloc/events.dart';
-import 'package:football_app/blocs/scorer_bloc/states.dart';
-import 'package:football_app/blocs/match_bloc/matches_bloc.dart';
-import 'package:football_app/blocs/match_bloc/events.dart';
 class MyTabBarView extends StatefulWidget {
   @override
   MyTabBarViewState createState() => MyTabBarViewState();
@@ -48,7 +49,7 @@ class TabsBuilder extends StatelessWidget {
                   itemCount: StandingLoaded.standing.table.length,
                   itemBuilder: (BuildContext context, int position) {
                     Team team = StandingLoaded.standing.table[position];
-                    return teamItemBuilder(team);
+                    return teamItemBuilder(team, context);
                   });
             }
           },

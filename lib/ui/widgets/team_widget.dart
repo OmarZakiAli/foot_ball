@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:football_app/back_end/models/team_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-Widget teamItemBuilder(Team team) {
+import 'package:football_app/back_end/models/team_model.dart';
+
+import './team_details_widget.dart';
+
+Widget teamItemBuilder(Team team, BuildContext context) {
   return Card(
     color: Colors.orange.shade400,
     elevation: 10.0,
     child: ListTile(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return TeamDetailsWidget(team: team);
+            }
+        ));
+      },
       title: Text("${team.name}"),
       leading: Container(
-        width: 40,
-        height: 40,
-        child: getSvgPicture(team.photoUrl)
+          width: 40,
+          height: 40,
+          child: getSvgPicture(team.photoUrl)
       ),
       trailing: Padding(
         padding: const EdgeInsets.only(right: 16),
