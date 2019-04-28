@@ -12,46 +12,9 @@ Widget playerItemBuilder(Player player) {
         "${player.name}",
         style: TextStyle(color: Colors.blue.shade900, fontSize: 16),
       ),
-      title:  Container(
-          child: getSvgPicture(player.teamId)?? CircularProgressIndicator(),
-          height: 40,
-          width: 40,),
       trailing: CircleAvatar(
         child: Text("${player.numGoals}",style: TextStyle(color: Colors.black),),
         backgroundColor: Colors.yellow.shade800,
-      ),
-    ),
-  );
-}
-
-getSvgPicture(int id) {
-  var widget;
-  String url = StandingLoaded.getPhotoById(id);
-  try {
-    widget = SvgPicture.network(
-      url,
-      width: 39,
-      height: 39,
-    );
-  } catch (e) {
-    widget = Container(
-      width: 39,
-      height: 39,
-      child: Center(
-        child: CircleAvatar(
-          backgroundColor: Colors.black,
-        ),
-      ),
-    );
-  }
-  if(widget!=null){
-  return widget;}
-  else return  Container(
-    width: 39,
-    height: 39,
-    child: Center(
-      child: CircleAvatar(
-        backgroundColor: Colors.black,
       ),
     ),
   );

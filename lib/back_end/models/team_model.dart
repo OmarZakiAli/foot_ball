@@ -10,7 +10,6 @@ int draw;
 int goalsScored;
 int goalsRecieved;
 int position;
-String photoUrl;
 
 @override
   String toString() {

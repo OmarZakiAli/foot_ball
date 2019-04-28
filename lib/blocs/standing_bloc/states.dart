@@ -12,15 +12,6 @@ class StandingLoaded extends StandingState{
 
 static Standing standing  ;
 
-static getPhotoById(int id){
-  Team team;
-  for(Team t in standing.table){
-    if(t.id==id){
-      team=t;
-    }
-  }
-  return team.photoUrl;
-}
 
 }
 

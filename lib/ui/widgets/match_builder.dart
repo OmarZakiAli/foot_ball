@@ -14,32 +14,14 @@ Widget matchItemBuilder(Matchx mat) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              child: getSvgPicture(mat.homeId)?? CircularProgressIndicator(),
-              height: 40,
-              width: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left:4.0),
-              child: Text("${formatString(mat.home)}"),
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left:4.0),
+          child: Text("${formatString(mat.home)}"),
         ),
         Center(child: Text(mat.time)),
-        Row(
-          children: <Widget>[
-            Container(
-              child: getSvgPicture(mat.awayId)?? CircularProgressIndicator(),
-              height: 40,
-              width: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Text("${formatString(mat.away)}"),
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 4.0),
+          child: Text("${formatString(mat.away)}"),
         )
       ],
     ),
@@ -47,36 +29,12 @@ Widget matchItemBuilder(Matchx mat) {
 
 }
 
-getSvgPicture(int id) {
-  var widget;
-  String url = StandingLoaded.getPhotoById(id);
-  try {
-    widget = SvgPicture.network(
-      url,
-      width: 39,
-      height: 39,
-    );
-  } catch (e) {
-    widget = Container(
-      width: 39,
-      height: 39,
-      child: Center(
-        child: CircleAvatar(
-          backgroundColor: Colors.black,
-        ),
-      ),
-    );
-  }
-  return widget;
-}
-
-
 formatString(String team){
   if(team.length<=12){
     return team;
   }else{
     return team.substring(0,12);
   }
-  
+
 }
 

@@ -22,7 +22,6 @@ table.clear();
    team.goalsRecieved=item["goalsAgainst"];
    team.goalsScored=item["goalsFor"];
    team.position=item["position"];
-   team.photoUrl=item["team"]["crestUrl"];
    table.add(team);
   }
 
