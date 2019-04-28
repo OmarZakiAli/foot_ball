@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import './home.dart';
 import 'package:football_app/ui/tab_bar.dart';
@@ -35,6 +39,14 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColorDark: Color(0xFF5D4037),
+        accentColor: Color(0xFF607D8B),
+        primaryColorLight: Color(0xFFD7CCC8),
+       primaryColor: Color(0xff795548),
+        primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white,fontSize: 24)),
+          accentTextTheme: TextTheme(title: TextStyle(color: Color(0xff757575),fontSize: 24))
+      ),
       home: new MyHome(standingBloc: standingBloc, scorerBloc: scorerBloc,matchBloc: matchBloc),
     );
   } //build

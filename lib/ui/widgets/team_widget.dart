@@ -1,28 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football_app/back_end/models/team_model.dart';
 
 import './team_details_widget.dart';
 
 Widget teamItemBuilder(Team team, BuildContext context) {
-  return Card(
-    color: Colors.orange.shade400,
-    elevation: 10.0,
+  return GestureDetector(
+    child: Card(
+    elevation: 5,
     child: ListTile(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return TeamDetailsWidget(team: team);
-        }));
-      },
-      leading: Text("${team.name}"),
-      trailing: Padding(
-        padding: const EdgeInsets.only(right: 16),
-        child: CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Text(
-              "${team.points}",
-              style: TextStyle(color: Colors.white),
-            )),
+      leading: Text(
+        "${team.name}",
+        style: TextStyle(color: Colors.black, fontSize: 16),
+      ),
+      trailing: CircleAvatar(
+        child: Text("${team.points}",style: TextStyle(color: Colors.white),),
+        backgroundColor: Theme.of(context).accentColor,
       ),
     ),
+  ),
   );
 }
