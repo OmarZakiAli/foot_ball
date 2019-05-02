@@ -12,7 +12,6 @@ for (Map item in badScorers) {
 plr.name=item["player"]["name"];
 plr.team=item["team"]["name"];
 plr.numGoals=item["numberOfGoals"];
-plr.teamId=item["team"]["id"];
 scorers.add(plr);
 
 }

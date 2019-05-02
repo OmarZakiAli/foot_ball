@@ -4,7 +4,7 @@ class Player {
 String name;
 String team;
 int numGoals;
-int teamId;
+
 
 @override
   String toString() {

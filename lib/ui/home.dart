@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:football_app/blocs/result_bloc/events.dart';
 import 'package:football_app/ui/tab_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:football_app/blocs/result_bloc/results_bloc.dart';
 import 'package:football_app/back_end/models/team_model.dart';
 import 'package:football_app/blocs/scorer_bloc/scorers_bloc.dart';
 import 'package:football_app/blocs/standing_bloc/events.dart';
@@ -17,9 +19,10 @@ class MyHome extends StatelessWidget {
   final StandingBloc standingBloc;
   final ScorerBloc scorerBloc;
   final MatchBloc matchBloc;
+  final ResultBloc resultBloc;
   final Key key;
 
-  const MyHome({this.standingBloc, this.scorerBloc, this.matchBloc, this.key})
+  const MyHome({this.standingBloc, this.scorerBloc, this.matchBloc, this.key,this.resultBloc})
       : super(key: key);
 
   @override
@@ -29,9 +32,11 @@ class MyHome extends StatelessWidget {
         BlocProvider<StandingBloc>(bloc: standingBloc),
         BlocProvider<ScorerBloc>(bloc: scorerBloc),
         BlocProvider<MatchBloc>(bloc: matchBloc),
+        BlocProvider<ResultBloc>(bloc: resultBloc),
+
       ],
       child: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           drawer: getDrawer(context),
           appBar: AppBar(
@@ -49,6 +54,9 @@ class MyHome extends StatelessWidget {
                 ),
                 Tab(
                   text: "matches",
+                ),
+                Tab(
+                  text: "results",
                 )
               ],
             ),
@@ -84,6 +92,7 @@ class MyHome extends StatelessWidget {
         standingBloc.dispatch(FetchStandingEvent(leagueId: leagueId));
         scorerBloc.dispatch(FetchScorerEvent(leagueId: leagueId));
         matchBloc.dispatch(FetchMatchEvent(leagueId: leagueId));
+        resultBloc.dispatch(FetchResultEvent(leagueId: leagueId));
         Navigator.pop(context);
       },
     );

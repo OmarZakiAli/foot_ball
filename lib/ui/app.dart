@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import './home.dart';
+import 'package:football_app/blocs/result_bloc/results_bloc.dart';
 import 'package:football_app/ui/tab_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_app/back_end/models/team_model.dart';
@@ -27,6 +28,8 @@ class _AppState extends State<App> {
 
   final ScorerBloc scorerBloc = ScorerBloc();
   final MatchBloc matchBloc=MatchBloc();
+  final ResultBloc resultBloc=ResultBloc();
+
 
   @override
   void initState() {
@@ -47,7 +50,7 @@ class _AppState extends State<App> {
         primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white,fontSize: 24)),
           accentTextTheme: TextTheme(title: TextStyle(color: Color(0xff757575),fontSize: 24))
       ),
-      home: new MyHome(standingBloc: standingBloc, scorerBloc: scorerBloc,matchBloc: matchBloc),
+      home: new MyHome(standingBloc: standingBloc, scorerBloc: scorerBloc,matchBloc: matchBloc,resultBloc: resultBloc,),
     );
   } //build
 
@@ -56,6 +59,7 @@ class _AppState extends State<App> {
     scorerBloc.dispose();
     standingBloc.dispose();
     matchBloc.dispose();
+    resultBloc.dispose();
     super.dispose();
   }
 }
